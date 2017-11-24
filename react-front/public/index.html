@@ -26,6 +26,7 @@
     var uri = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoid29sdHN1IiwiYSI6ImNqYWU3YWRoYzF6MWMyd3FldnVuYzQyeG8ifQ.XjY709a94Z-XOVI6KFp8HA';
     var mymap;
     var circle;
+    var polyLine;
     var bus1URL = "https://llb.cloud.tyk.io/llb-bus-api/GetData?busId=1612";
     var originalLatitude = 0;
     var originalLongitude = 0;
@@ -64,14 +65,18 @@
         accessToken: 'your.mapbox.access.token'
       }).addTo(mymap);
 
-      circle = L.circle([latitude, longitude], { radius: 10 });
+      circle = L.circle([latitude, longitude], { radius: 10, color: "#6666ff" });
+      polyLine = L.polyline([[latitude, longitude]], { color: '#6666ff', weight: 4 });
+
       circle.addTo(mymap);
+      polyLine.addTo(mymap);
     }
 
     function renderBus(latitude, longitude) {
       var latlng = L.latLng(latitude, longitude);
       circle.setLatLng(latlng);
       circle.redraw();
+      polyLine.addLatLng(latlng);
       latlng = L.latLng(latitude - 0.001, longitude);
       mymap.panTo(latlng);
 
