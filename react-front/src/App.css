@@ -1,15 +1,25 @@
 .Content {
-    margin-top: 1%;
-    margin-left: 5%;
-    float: left;
-    width: "20%";
-    padding: 1%;
-    background-color: rgb(93, 161, 224);
+    margin-top: 0.5%;
+    margin-left: 0.5%;
+    width: 12%;
+    height: 25%;
+    padding: 2%;
+    background-color: rgb(95, 165, 223);
     border-radius: 5%;
     z-index: 20000;
-    position: fixed;
+    position: absolute;
+    border: 2px solid rgb(110, 191, 235);
+}
+
+h3 {
+    color: rgb(255, 255, 255);
+    font-size: 1.4em;
+    font-family: "Trebuchet MS", Helvetica, sans-serif
 }
 
 p {
-    font-size: 1.2em;
+    font-size: 1.4em;
+    color: white;
+    font-weight: bold;
+    font-family: "Trebuchet MS", Helvetica, sans-serif
 }
