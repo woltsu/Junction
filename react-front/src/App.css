@@ -1,0 +1,15 @@
+.Content {
+    margin-top: 1%;
+    margin-left: 5%;
+    float: left;
+    width: "20%";
+    padding: 1%;
+    background-color: rgb(93, 161, 224);
+    border-radius: 5%;
+    z-index: 20000;
+    position: fixed;
+}
+
+p {
+    font-size: 1.2em;
+}

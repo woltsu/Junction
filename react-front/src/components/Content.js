@@ -4,9 +4,7 @@ import { Datagetter } from './Datagetter';
 export class Content extends Component {
   render() {
     return (
-        <div>
           <Datagetter />
-        </div>
     );
   }
 }
