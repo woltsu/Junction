@@ -63,11 +63,13 @@ export class Datagetter extends Component {
     render() {
         // example API data: <p>{Math.round(this.state.data.spd * 3.6) + " km/h"}</p>;
         var now = new Date();
+        var mins = now.getMinutes();
+        mins = mins < 9 ? '0' + mins : mins;
         return (
             <div>
                 <h3>23</h3>
                 <p>{this.state.fakeSpeed} km/h</p>
-                <p>{now.getHours() + ':' + now.getMinutes() + ' ' + now.getDate() + '.' + (now.getMonth() + 1) + '.' + now.getFullYear()}</p>
+                <p>{now.getHours() + ':' + mins + ' ' + now.getDate() + '.' + (now.getMonth() + 1) + '.' + now.getFullYear()}</p>
             </div>
         );
     }
