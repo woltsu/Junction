@@ -27,7 +27,7 @@
     var mymap;
     var circle;
     var polyLine;
-    var stops;
+    var stops = [];
     var bus1URL = "https://llb.cloud.tyk.io/llb-bus-api/GetData?busId=3009";
 
     setInterval(function () {
@@ -48,7 +48,7 @@
       });
     }
 
-    function getStops() {
+    function getStops(direction) {
       $.ajax({
         url: "https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql/",
         method: "POST",
@@ -61,11 +61,11 @@
         },
         contentType: "json",
         data: JSON.stringify({
-          query: "{pattern(id: \"HSL:1055:1:01\") {stops{name lat lon}}}"
+          query: "{pattern(id: \"HSL:1055:" + direction + ":01\") {stops{name lat lon}}}"
         }),
         contentType: "json",
         success: function (data) {
-          stops = data.data.pattern.stops;
+          stops = stops.concat(data.data.pattern.stops);
           //stops.forEach((stop) => alert(stop.name));
           drawStops();
         },
@@ -78,7 +78,9 @@
     function drawStops() {
       stops.forEach(function (stop) {
         L.circleMarker([stop.lat, stop.lon], { radius: 6, color: "red" }).addTo(mymap);
-        /*L.marker([stop.lat, stop.lon])
+        /*var popup = L.popup({ closeButton: false, autoPan: false, closeOnClick: false })
+          .setLatLng([stop.lat, stop.lon])
+          .setContent("<p>" + stop.name + "</p>")
           .addTo(mymap);*/
       });
     }
@@ -101,7 +103,8 @@
 
       circle.addTo(mymap);
       polyLine.addTo(mymap);
-      getStops();
+      getStops(0);
+      getStops(1);
     }
 
     function renderBus(latitude, longitude) {
