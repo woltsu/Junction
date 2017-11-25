@@ -115,6 +115,7 @@
 
       var currentIndex = 1;
       var previousStop = "";
+      var isInBox = false;
       function checkIfBusIsOnStop(busLat, busLon) {
         stops.forEach(function (stop, i) {
           if (previousStop === stopNames[i]) {
@@ -149,7 +150,7 @@
         }
         mymap = L.map('mapid', {
           center: [latitude, longitude],
-          zoom: 17
+          zoom: 18
         });
 
         mymap.on('click', function (e) {
@@ -171,11 +172,11 @@
           accessToken: 'your.mapbox.access.token'
         }).addTo(mymap);
 
-        circle = L.circleMarker([latitude, longitude], { radius: 10, color: "#6666ff" });
-        polyLine = L.polyline([[latitude, longitude]], { color: '#6666ff', weight: 4 });
+        polyLine = L.polyline(route, { color: '#6666ff', weight: 4 });
+        circle = L.circleMarker([latitude, longitude], { radius: 10, color: "#00007f" });
 
-        circle.addTo(mymap);
         polyLine.addTo(mymap);
+        circle.addTo(mymap);
         getStops(1);
       }
 
@@ -207,7 +208,7 @@
         if (latitude != previousLat || longitude != previousLon) {
           circle.setLatLng(latlng);
           circle.redraw();
-          polyLine.addLatLng(latlng);
+          //polyLine.addLatLng(latlng);
           mymap.panTo(latlng);
         }
         previousLat = latitude;
@@ -227,7 +228,6 @@
       }
 
       getData(renderMap, bus1URL);
-
       var route = [
         [60.20294343427406, 24.907969236373905],
         [60.2029327713246, 24.907497167587284],
