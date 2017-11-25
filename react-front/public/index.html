@@ -21,6 +21,10 @@
 
 
   <div id="mapid" style="height: 100vh">
+    <div style="position: fixed; right: 10px; z-index: 40000">
+      <h1>NEXT STOP:</h1>
+      <h2 id="nextStop"></h2>
+    </div>
     <div id="root"></div>
     <script>
       var useRoute = true;
@@ -122,7 +126,7 @@
             if (busLon >= (lon - 0.0005) && busLon <= (lon + 0.0005)) {
               if (currentIndex >= stopNames.length - 1) {
                 currentIndex = 1;
-                previousStop = stopNames[stopNames.length - 1];                
+                previousStop = stopNames[stopNames.length - 1];
                 stopNames = stopNames.reverse();
                 stops = stops.reverse();
               } else {
@@ -131,6 +135,7 @@
               }
             }
           }
+          document.querySelector("#nextStop").innerHTML = stopNames[currentIndex];
           console.log(stopNames[currentIndex]);
         });
       }
@@ -224,7 +229,7 @@
       getData(renderMap, bus1URL);
 
       var route = [
-        [60.20294343427406,24.907969236373905],
+        [60.20294343427406, 24.907969236373905],
         [60.2029327713246, 24.907497167587284],
         [60.202874125040644, 24.90731477737427],
         [60.20281547865186, 24.90702509880066],
