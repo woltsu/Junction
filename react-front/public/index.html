@@ -198,6 +198,7 @@
       polyLine.addTo(mymap);
       circle.addTo(mymap);
       getStops(1);
+      renderSights();
     }
 
     var index = 0;
@@ -229,7 +230,7 @@
         circle.setLatLng(latlng);
         circle.redraw();
         //polyLine.addLatLng(latlng);
-        mymap.panTo(latlng);
+        //mymap.panTo(latlng);
       }
       previousLat = latitude;
       previousLon = longitude;
@@ -247,7 +248,32 @@
       L.marker([latitude, longitude], { icon: myIcon }).addTo(mymap);*/
     }
 
+    function renderSights(sigths) {
+      var myIcon = L.icon({
+        iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png',
+        iconSize: [38, 95],
+        iconAnchor: [22, 94],
+        popupAnchor: [-3, -76],
+      });
+
+      sights.forEach(function (sight) {
+        L.marker([sight[1], sight[2]], { icon: myIcon }).addTo(mymap);
+
+      });
+    }
+
     getData(renderMap, bus1URL);
+
+    // SIGHTS
+    var sights = [
+      ["Rautatieasema", 60.171873, 24.941411],
+      ["Messukeskus", 60.20253290821839,24.934673309326172],
+      ["Linnanmäki", 60.188177, 24.940424],
+      ["Hakaniemen tori", 60.17898037627785,24.951367378234867],
+      ["Kasvitieteellinen puutarha", 60.17516003109399,24.94801998138428]
+    ]
+
+    // ROUTE
     var route = [
       [60.202879456525324, 24.908194541931156],
       [60.20294343427406, 24.907969236373905],
