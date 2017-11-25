@@ -230,7 +230,7 @@
         circle.setLatLng(latlng);
         circle.redraw();
         //polyLine.addLatLng(latlng);
-        //mymap.panTo(latlng);
+        mymap.panTo(latlng);
       }
       previousLat = latitude;
       previousLon = longitude;
@@ -257,7 +257,11 @@
       });
 
       sights.forEach(function (sight) {
-        L.marker([sight[1], sight[2]], { icon: myIcon }).addTo(mymap);
+        //L.marker([sight[1], sight[2]], { icon: myIcon }).addTo(mymap);
+        var bubble = L.popup({ closeButton: false, autoPan: false, closeOnClick: false })
+          .setLatLng([sight[1], sight[2]]);
+        bubble.setContent("<span>" + sight[0] + "</span>");
+        bubble.addTo(mymap);
 
       });
     }
@@ -267,10 +271,11 @@
     // SIGHTS
     var sights = [
       ["Rautatieasema", 60.171873, 24.941411],
-      ["Messukeskus", 60.20253290821839,24.934673309326172],
+      ["Keskuspuisto", 60.20742689742546, 24.910533428192142],
+      ["Messukeskus", 60.20253290821839, 24.934673309326172],
       ["Linnanmäki", 60.188177, 24.940424],
-      ["Hakaniemen tori", 60.17898037627785,24.951367378234867],
-      ["Kasvitieteellinen puutarha", 60.17516003109399,24.94801998138428]
+      ["Hakaniemen tori", 60.17898037627785, 24.951367378234867],
+      ["Kasvitieteellinen puutarha", 60.17516003109399, 24.94801998138428]
     ]
 
     // ROUTE
