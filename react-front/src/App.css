@@ -4,7 +4,7 @@
     width: 12%;
     min-height: 25%;
     padding: 1%;
-    background-color: rgba(95, 165, 223, 0.95);
+    background-color: rgba(95, 165, 223, 0.993);
     border-radius: 5%;
     z-index: 20000;
     position: absolute;
@@ -12,13 +12,20 @@
 }
 
 h3 {
+    margin-left: 5%;
+    margin-top: 10%;
     color: rgb(255, 255, 255);
-    font-size: 1.4em;
-    font-family: "Trebuchet MS", Helvetica, sans-serif
+    font-size: 5em;
+    font-weight: 15000;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    padding: 0%;
+    margin-bottom: 0;
+    text-shadow: -1px 0 rgb(30, 156, 224), 0 1px rgb(30, 156, 224), 1px 0 rgb(30, 156, 224), 0 -1px rgb(30, 156, 224);
 }
 
 p {
-    font-size: 1.4em;
+    margin-left: 5%;
+    font-size: 1.8em;
     color: white;
     font-weight: bold;
     font-family: "Trebuchet MS", Helvetica, sans-serif
