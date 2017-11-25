@@ -258,7 +258,7 @@
 
       sights.forEach(function (sight) {
         //L.marker([sight[1], sight[2]], { icon: myIcon }).addTo(mymap);
-        var bubble = L.popup({ closeButton: false, autoPan: false, closeOnClick: false })
+        var bubble = L.popup({ closeButton: false, autoPan: false, closeOnClick: false, className: "sightBubble" })
           .setLatLng([sight[1], sight[2]]);
         bubble.setContent("<span>" + sight[0] + "</span>");
         bubble.addTo(mymap);
