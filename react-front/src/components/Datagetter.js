@@ -49,17 +49,14 @@ export class Datagetter extends Component {
     render() {
         return (
             <div>
-                <div style={{ width: "20%", float: "left" }}>
+                <div style={{ }}>
                     <p>Bus {this.state.data.BusId}</p>
-                    <p>~ spd: {(this.state.data.spd*1000/360)}</p>
-                    <p>~ Altitude: {this.state.data.alt}</p>
-                    <p>~ Latitude: {this.state.data.lat}</p>
-                    <p>~ Lontitude: {this.state.data.lon}</p>
-                    <p>~ Temp_6: {this.state.data['3009_6']['set_6']}</p>
-                    <p>~ Temp_7: {this.state.data['3009_7']['set_7']}</p>
-                    <p>~ Temp_8: {this.state.data['3009_8']['set_8']}</p>
-                    <button onClick={this.getData}>Get the Bus!</button>
-                    <button onClick={this.getCenter}>Get the Map!</button>
+                    <p>Speed: {(this.state.data.spd*1000/360)}</p>
+                    <p>Latitude: {this.state.data.lat}</p>
+                    <p>Lontitude: {this.state.data.lon}</p>
+                    <p>Temp_6: {this.state.data['3009_6']['set_6']}</p>
+                    <p>Temp_7: {this.state.data['3009_7']['set_7']}</p>
+                    <p>Temp_8: {this.state.data['3009_8']['set_8']}</p>
                 </div>
             </div>
         );
