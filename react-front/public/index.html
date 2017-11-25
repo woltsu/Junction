@@ -27,13 +27,12 @@
     var mymap;
     var circle;
     var polyLine;
-    var bus1URL = "https://llb.cloud.tyk.io/llb-bus-api/GetData?busId=1612";
-    var originalLatitude = 0;
-    var originalLongitude = 0;
+    var stops;
+    var bus1URL = "https://llb.cloud.tyk.io/llb-bus-api/GetData?busId=3009";
 
     setInterval(function () {
       getData(renderBus, bus1URL);
-      console.log("Fetching bus data...");
+      //console.log("Fetching bus data...");
     }, 1000);
 
     function getData(callback, burl) {
@@ -49,10 +48,42 @@
       });
     }
 
-    function renderMap(latitude, longitude) {
-      originalLatitude = latitude;
-      originalLongitude = longitude;
+    function getStops() {
+      $.ajax({
+        url: "https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql/",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "DELETE, HEAD, GET, OPTIONS, POST, PUT",
+          "Access-Control-Allow-Headers": "Content-Type, Content-Range, Content-Disposition, Content-Description",
+          "Access-Control-Max-Age": "1728000"
+        },
+        contentType: "json",
+        data: JSON.stringify({
+          query: "{pattern(id: \"HSL:1023:1:01\") {stops{name lat lon}}}"
+        }),
+        contentType: "json",
+        success: function (data) {
+          stops = data.data.pattern.stops;
+          //stops.forEach((stop) => alert(stop.name));
+          drawStops();
+        },
+        error: function (xhr, status, error) {
+          console.log(xhr.responseText);
+        }
+      });
+    }
 
+    function drawStops() {
+      stops.forEach(function (stop) {
+        L.circleMarker([stop.lat, stop.lon], { radius: 5, color: "red" }).addTo(mymap);
+        /*L.marker([stop.lat, stop.lon])
+          .addTo(mymap);*/
+      });
+    }
+
+    function renderMap(latitude, longitude) {
       mymap = L.map('mapid', {
         center: [(latitude - 0.001), longitude],
         zoom: 17
@@ -65,11 +96,12 @@
         accessToken: 'your.mapbox.access.token'
       }).addTo(mymap);
 
-      circle = L.circle([latitude, longitude], { radius: 10, color: "#6666ff" });
+      circle = L.circleMarker([latitude, longitude], { radius: 10, color: "#6666ff" });
       polyLine = L.polyline([[latitude, longitude]], { color: '#6666ff', weight: 4 });
 
       circle.addTo(mymap);
       polyLine.addTo(mymap);
+      getStops();
     }
 
     function renderBus(latitude, longitude) {
@@ -78,10 +110,7 @@
       circle.redraw();
       polyLine.addLatLng(latlng);
       latlng = L.latLng(latitude - 0.001, longitude);
-      mymap.panTo(latlng);
-
-      console.log(originalLongitude);
-      console.log(originalLatitude);
+      //mymap.panTo(latlng);
     }
 
     getData(renderMap, bus1URL);
