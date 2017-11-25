@@ -165,11 +165,11 @@
     // and both the bus and the line is redrawn.
     function renderBus(latitude, longitude) {
       var latlng = L.latLng(latitude, longitude);
-      mymap.panTo(latlng);
-      if (latitude != previousLat && longitude != previousLon) {
+      if (latitude != previousLat || longitude != previousLon) {
         circle.setLatLng(latlng);
         circle.redraw();
         polyLine.addLatLng(latlng);
+        mymap.panTo(latlng);
       }
       previousLat = latitude;
       previousLon = longitude;
