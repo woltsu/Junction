@@ -139,7 +139,7 @@
             }
             document.querySelector("#nextStop").innerHTML = stopNames[currentIndex];
             if (!nextStopBubble) {
-              nextStopBubble = L.popup({ closeButton: false, autoPan: false })
+              nextStopBubble = L.popup({ closeButton: false, autoPan: false, closeOnClick: false })
                 .setLatLng([stops[currentIndex]._latlng.lat, stops[currentIndex]._latlng.lng]);
               nextStopBubble.addTo(mymap);
               nextStopBubble.setContent("<span>bus arrival:</span>");
