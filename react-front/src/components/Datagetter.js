@@ -61,11 +61,14 @@ export class Datagetter extends Component {
     }
 
     render() {
+        var now = new Date();
         return (
             <div>
                 <h3>Bus {this.state.data.BusId}</h3>
                 <p>Speed: {Math.round(this.state.data.spd * 3.6) + " km/h"}</p>
                 <p>Speed: {this.state.fakeSpeed} km/h</p>
+                
+                <p style={{ fontSize: 12, float: 'right' }}>  {now.getHours() + ':' + now.getMinutes() + ', ' + now.getDate() + '.' + (now.getMonth()+1) + '.' + now.getFullYear()}</p>
             </div>
         );
     }
