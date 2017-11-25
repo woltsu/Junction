@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import { Map } from './Map';
 
 var d;
@@ -62,11 +60,6 @@ export class Datagetter extends Component {
                     <p>~ Temp_8: {this.state.data['3009_8']['set_8']}</p>
                     <button onClick={this.getData}>Get the Bus!</button>
                     <button onClick={this.getCenter}>Get the Map!</button>
-                </div>
-                <div style={{ width: "80%", float: "right" }}>
-                    <div style={{ height: 650, width: '100%' }}>
-                        <Map newCenter={this.state.center} lat={this.state.data.lat} lng={this.state.data.lon} /> 
-                    </div>
                 </div>
             </div>
         );

@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import { Datagetter } from './Datagetter';
 
 export class Content extends Component {
@@ -13,3 +11,4 @@ export class Content extends Component {
   }
 }
 
+export default Content;
