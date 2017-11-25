@@ -198,7 +198,7 @@
       polyLine.addTo(mymap);
       circle.addTo(mymap);
       getStops(1);
-      renderSights();
+      renderSights(sights);
     }
 
     var index = 0;
@@ -255,7 +255,6 @@
           .setLatLng([sight[1], sight[2]]);
         bubble.setContent("<span>" + sight[0] + "</span>");
         bubble.addTo(mymap);
-
       });
     }
 
