@@ -181,7 +181,7 @@
         coords.push([lat, lon]);
         var result = "";
         coords.forEach(function (coord) {
-          result = result.concat("[" + coord + "]") + "\n";
+          result = result.concat("[" + coord + "]") + ",\n";
         });
         console.log(result);
       });
