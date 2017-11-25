@@ -20,7 +20,7 @@
   </noscript>
   <div id="root"></div>
 
-  <div id="mapid" style="height: 1080px;"></div>
+  <div id="mapid" style="height: 100vh"></div>
 
   <script>
     var uri = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoid29sdHN1IiwiYSI6ImNqYWU3YWRoYzF6MWMyd3FldnVuYzQyeG8ifQ.XjY709a94Z-XOVI6KFp8HA';
@@ -77,7 +77,7 @@
 
     function drawStops() {
       stops.forEach(function (stop) {
-        L.circleMarker([stop.lat, stop.lon], { radius: 5, color: "red" }).addTo(mymap);
+        L.circleMarker([stop.lat, stop.lon], { radius: 6, color: "red" }).addTo(mymap);
         /*L.marker([stop.lat, stop.lon])
           .addTo(mymap);*/
       });
@@ -85,7 +85,7 @@
 
     function renderMap(latitude, longitude) {
       mymap = L.map('mapid', {
-        center: [(latitude - 0.001), longitude],
+        center: [latitude, longitude],
         zoom: 17
       });
 
@@ -109,8 +109,8 @@
       circle.setLatLng(latlng);
       circle.redraw();
       polyLine.addLatLng(latlng);
-      latlng = L.latLng(latitude - 0.001, longitude);
-      //mymap.panTo(latlng);
+      latlng = L.latLng(latitude, longitude);
+      mymap.panTo(latlng);
     }
 
     getData(renderMap, bus1URL);
