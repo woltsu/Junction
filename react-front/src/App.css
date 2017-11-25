@@ -2,8 +2,8 @@
     margin-top: 0.5%;
     margin-left: 0.5%;
     width: 12%;
-    height: 25%;
-    padding: 2%;
+    min-height: 25%;
+    padding: 1%;
     background-color: rgb(95, 165, 223);
     border-radius: 5%;
     z-index: 20000;

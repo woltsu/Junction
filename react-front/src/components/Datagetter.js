@@ -3,7 +3,7 @@ import { Map } from './Map';
 
 var d;
 var c;
-var fakeSeedInterval;
+var fakeSpeedInterval;
 
 export class Datagetter extends Component {
     constructor(props) {
@@ -52,10 +52,10 @@ export class Datagetter extends Component {
         this.getCenter();
         d = setInterval(this.getData, 1000);
         c = setInterval(this.getCenter, 3000);
-        fakeSeedInterval = setInterval(this.setFakeSpeed, 1000);
+        fakeSpeedInterval = setInterval(this.setFakeSpeed, 1000);
     }
 
-    componentDidUnmount() {
+    componentUnmount() {
         d.clearInterval();
         c.clearInterval();
     }
@@ -68,7 +68,7 @@ export class Datagetter extends Component {
                 <p>Speed: {Math.round(this.state.data.spd * 3.6) + " km/h"}</p>
                 <p>Speed: {this.state.fakeSpeed} km/h</p>
                 
-                <p style={{ fontSize: 12, float: 'right' }}>  {now.getHours() + ':' + now.getMinutes() + ', ' + now.getDate() + '.' + (now.getMonth()+1) + '.' + now.getFullYear()}</p>
+                <p>  {now.getHours() + ':' + now.getMinutes() + ', ' + now.getDate() + '.' + (now.getMonth()+1) + '.' + now.getFullYear()}</p>
             </div>
         );
     }
