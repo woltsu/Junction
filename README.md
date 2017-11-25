@@ -9,5 +9,9 @@ Demo web application designed to be used on screens inside of Helsinki buses. Th
 > $ cd react-front  
 > $ npm install  
 > $ npm start 
+<br>
+
+### Heroku <br>
+https://busmate.herokuapp.com/
 
 
