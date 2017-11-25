@@ -44,7 +44,7 @@ export class Datagetter extends Component {
     }
 
     setFakeSpeed() {
-        this.setState({fakeSpeed: Math.floor(Math.random() * 6) + 30  })
+        this.setState({ fakeSpeed: Math.floor(Math.random() * 6) + 30 })
     }
 
     componentDidMount() {
@@ -61,14 +61,13 @@ export class Datagetter extends Component {
     }
 
     render() {
+        // example API data: <p>{Math.round(this.state.data.spd * 3.6) + " km/h"}</p>;
         var now = new Date();
         return (
             <div>
-                <h3>Bus {this.state.data.BusId}</h3>
-                <p>Speed: {Math.round(this.state.data.spd * 3.6) + " km/h"}</p>
-                <p>Speed: {this.state.fakeSpeed} km/h</p>
-                
-                <p>  {now.getHours() + ':' + now.getMinutes() + ', ' + now.getDate() + '.' + (now.getMonth()+1) + '.' + now.getFullYear()}</p>
+                <h3>23</h3>
+                <p>{this.state.fakeSpeed} km/h</p>
+                <p>{now.getHours() + ':' + now.getMinutes() + ' ' + now.getDate() + '.' + (now.getMonth() + 1) + '.' + now.getFullYear()}</p>
             </div>
         );
     }
