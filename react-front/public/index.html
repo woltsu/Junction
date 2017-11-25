@@ -249,13 +249,6 @@
     }
 
     function renderSights(sigths) {
-      var myIcon = L.icon({
-        iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png',
-        iconSize: [38, 95],
-        iconAnchor: [22, 94],
-        popupAnchor: [-3, -76],
-      });
-
       sights.forEach(function (sight) {
         //L.marker([sight[1], sight[2]], { icon: myIcon }).addTo(mymap);
         var bubble = L.popup({ closeButton: false, autoPan: false, closeOnClick: false, className: "sightBubble" })
@@ -275,7 +268,10 @@
       ["Messukeskus", 60.20253290821839, 24.934673309326172],
       ["Linnanmäki", 60.188177, 24.940424],
       ["Hakaniemen tori", 60.17898037627785, 24.951367378234867],
-      ["Kasvitieteellinen puutarha", 60.17516003109399, 24.94801998138428]
+      ["Kasvitieteellinen puutarha", 60.17516003109399, 24.94801998138428],
+      ["Pasilan asema", 60.19855000568835,24.933493137359623],
+      ["Tokoinranta", 60.1801007843025,24.947075843811035],
+      ["Kallion kirkko", 60.18403791502286,24.949328899383545]
     ]
 
     // ROUTE
