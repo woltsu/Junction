@@ -28,7 +28,6 @@
       [60.202815974, 24.90711166],
       [60.202625069, 24.904641984],
       [60.202755436, 24.90121019],
-      [60.204340257, 24.900282315],
       [60.204537916, 24.900257469],
       [60.204590824, 24.90021989],
       [60.205109225, 24.899133102],
@@ -67,7 +66,6 @@
       [60.186816306, 24.943246169],
       [60.185641777, 24.943359136],
       [60.185086692, 24.94152847],
-      [60.184196657, 24.9416962],
       [60.184293371, 24.941679712],
       [60.182865509, 24.945276518],
       [60.181635161, 24.948335604],
@@ -83,9 +81,10 @@
       [60.171397622, 24.942915998],
       [60.171092733, 24.942854804]
     ]
-  
-    var uri = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoid29sdHN1IiwiYSI6ImNqYWU3YWRoYzF6MWMyd3FldnVuYzQyeG8ifQ.XjY709a94Z-XOVI6KFp8HA';
-    var bus1URL = "https://llb.cloud.tyk.io/llb-bus-api/GetData?busId=3009";
+    var useRoute = true;
+    //var uri = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoid29sdHN1IiwiYSI6ImNqYWU3YWRoYzF6MWMyd3FldnVuYzQyeG8ifQ.XjY709a94Z-XOVI6KFp8HA';
+    var uri = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}";
+    var bus1URL = "https://llb.cloud.tyk.io/llb-bus-api/GetData?busId=9999";
     var mymap;
     var circle;
     var polyLine;
@@ -97,8 +96,7 @@
 
     // Fetches bus GPS data every 1 seconds
     setInterval(function () {
-      moveBus(route);
-      //getData(renderBus, bus1URL);
+      useRoute ? moveBus(route) : getData(renderBus, bus1URL);
     }, 1000);
 
     // Gets data and calls a callback method
@@ -131,8 +129,8 @@
         }),
         contentType: "json",
         success: function (data) {
-          stops = stops.concat(data.data.pattern.stops);
-          drawStops();
+          //stops = stops.concat(data.data.pattern.stops);
+          drawStops(data.data.pattern.stops);
         },
         error: function (xhr, status, error) {
           console.log(xhr.responseText);
@@ -141,18 +139,29 @@
     }
 
     // Draws the bus stops on the map as circles. Popup can be used to show additional data about the stop.
-    function drawStops() {
+    function drawStops(data) {
       stops.forEach(function (stop) {
-        L.circleMarker([stop.lat, stop.lon], { radius: 6, color: "red" }).addTo(mymap);
+        stop.remove();
+      });
+      stops = [];
+      data.forEach(function (stop) {
+        stops.push(L.circleMarker([stop.lat, stop.lon], { radius: 6, color: "red" }).addTo(mymap));
         /*var popup = L.popup({ closeButton: false, autoPan: false, closeOnClick: false })
           .setLatLng([stop.lat, stop.lon])
           .setContent("<p>" + stop.name + "</p>")
           .addTo(mymap);*/
       });
+      stops.forEach(function (stop) {
+        stop.addTo(mymap);
+      });
     }
 
     // Initializes the map, bus and the polyline. In the end the function calls getStops methods for both directions of the bus.
     function renderMap(latitude, longitude) {
+      if (useRoute) {
+        latitude = 60.202863765;
+        longitude = 24.907371085;
+      }
       mymap = L.map('mapid', {
         center: [latitude, longitude],
         zoom: 17
@@ -170,24 +179,26 @@
 
       circle.addTo(mymap);
       polyLine.addTo(mymap);
-      getStops(0);
       getStops(1);
+      //getStops(1);
     }
     
     var index = 0;
-    var direction = 0;
+    var direction = 1;
     function moveBus(route) {
-      if (direction === 0) {
+      if (direction === 1) {
         if (index === route.length) {
-          direction = 1;
+          direction = 0;
+          getStops(0);
           index--;
         } else {
           index++;
         }
       } else {
         if (index === 0) {
-          direction = 0;
-          index++;
+          direction = 1;
+          getStops(1);
+          index--;
         } else {
           index--;
         }
@@ -219,8 +230,7 @@
       L.marker([latitude, longitude], { icon: myIcon }).addTo(mymap);*/
     }
 
-    //getData(renderMap, bus1URL);
-    renderMap(60.202863765, 24.907371085);
+    getData(renderMap, bus1URL);
   </script>
 
 </body>
