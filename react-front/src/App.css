@@ -30,3 +30,7 @@ p {
     font-weight: bold;
     font-family: "Trebuchet MS", Helvetica, sans-serif
 }
+
+.sightBubble {
+    background-color: black;
+}
