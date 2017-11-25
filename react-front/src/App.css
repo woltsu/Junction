@@ -34,3 +34,7 @@ p {
 .sightBubble {
     background-color: black;
 }
+
+.eventBubble {
+    background-color: hotpink;
+}

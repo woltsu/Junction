@@ -151,10 +151,10 @@
               nextStopBubble = L.popup({ closeButton: false, autoPan: false, closeOnClick: false })
                 .setLatLng([stops[currentIndex]._latlng.lat, stops[currentIndex]._latlng.lng]);
               nextStopBubble.addTo(mymap);
-              nextStopBubble.setContent("<span>bus arrival:</span><br /><span>other lines:</span>");
+              nextStopBubble.setContent("<span>bus arrival: x seconds</span><br /><span>other lines: x, y, z</span>");
             } else {
               nextStopBubble.setLatLng(stops[currentIndex]._latlng);
-              nextStopBubble.setContent("<span>bus arrival:</span><br /><span>other lines:</span>");
+              nextStopBubble.setContent("<span>bus arrival: x seconds</span><br /><span>other lines: x, y, z</span>");
             }
           }
         }
@@ -199,6 +199,7 @@
       circle.addTo(mymap);
       getStops(1);
       renderSights(sights);
+      renderEvents(events);
     }
 
     var index = 0;
@@ -258,6 +259,16 @@
       });
     }
 
+    function renderEvents(events) {
+      events.forEach(function (event) {
+        //L.marker([event[1], event[2]], { icon: myIcon }).addTo(mymap);
+        var bubble = L.popup({ closeButton: false, autoPan: false, closeOnClick: false, className: "eventBubble" })
+          .setLatLng([event[1], event[2]]);
+        bubble.setContent("<span>" + event[0] + "</span>");
+        bubble.addTo(mymap);
+
+      });
+    }
     getData(renderMap, bus1URL);
 
     // SIGHTS
@@ -271,6 +282,13 @@
       ["Pasilan asema", 60.19855000568835,24.933493137359623],
       ["Tokoinranta", 60.1801007843025,24.947075843811035],
       ["Kallion kirkko", 60.18403791502286,24.949328899383545]
+    ]
+
+    // EVENTS
+    var events = [
+      ["Cat Christening <br /> Tu 25.03.2018 <br /> At 19:00  <br /> Kuumotuspolku 7", 60.206712569778325,24.897229671478275],
+      ["Free ice skating <br /> Mon 31.03.2018 <br /> At 19:30  <br /> Tietie 8", 60.19265740922319,24.941872358322147],
+      ["Knitting seminar <br /> Tu 25.03.2018 <br /> At 07:00  <br /> Taotaotie 6", 60.17777456112809,24.948942661285404]
     ]
 
     // ROUTE
