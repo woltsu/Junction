@@ -151,10 +151,10 @@
               nextStopBubble = L.popup({ closeButton: false, autoPan: false, closeOnClick: false })
                 .setLatLng([stops[currentIndex]._latlng.lat, stops[currentIndex]._latlng.lng]);
               nextStopBubble.addTo(mymap);
-              nextStopBubble.setContent("<span>bus arrival:</span>");
+              nextStopBubble.setContent("<span>bus arrival:</span><br /><span>other lines:</span>");
             } else {
               nextStopBubble.setLatLng(stops[currentIndex]._latlng);
-              nextStopBubble.setContent("<span>bus arrival:</span>");
+              nextStopBubble.setContent("<span>bus arrival:</span><br /><span>other lines:</span>");
             }
           }
         }
