@@ -53,7 +53,7 @@
     // Fetches bus GPS data every 1 seconds
     setInterval(function () {
       useRoute ? moveBus(route) : getData(renderBus, bus1URL);
-    }, 800);
+    }, 500);
 
     // Gets data and calls a callback method
     function getData(callback, burl) {
@@ -157,8 +157,8 @@
     // Initializes the map, bus and the polyline. In the end the function calls getStops methods for both directions of the bus.
     function renderMap(latitude, longitude) {
       if (useRoute) {
-        latitude = 60.20294343427406;
-        longitude = 24.907969236373905;
+        latitude = 60.202879456525324;
+        longitude = 24.908194541931156;
       }
       mymap = L.map('mapid', {
         center: [latitude, longitude],
@@ -240,6 +240,7 @@
 
     getData(renderMap, bus1URL);
     var route = [
+      [60.202879456525324,24.908194541931156],
       [60.20294343427406, 24.907969236373905],
       [60.2029327713246, 24.907497167587284],
       [60.202874125040644, 24.90731477737427],
