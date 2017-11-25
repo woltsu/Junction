@@ -133,9 +133,9 @@
                 currentIndex = i + 1;
                 previousStop = stopNames[i];
               }
+              document.querySelector("#nextStop").innerHTML = stopNames[currentIndex];
             }
           }
-          document.querySelector("#nextStop").innerHTML = stopNames[currentIndex];
           console.log(stopNames[currentIndex]);
         });
       }
