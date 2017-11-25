@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="theme-color" content="#000000">
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-  <title>Brillian Bus Display</title>
+  <title>Brilliant Bus Display</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
     crossorigin="" />
   <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
@@ -33,6 +33,8 @@
             margin-top: 0.5%">
       <h1 style="color: white">NEXT STOP:</h1>
       <h2 id="nextStop" style="color: white"></h2>
+      <h1 style="color: white">THEN:</h1>
+      <h2 id="thenStop" style="color: white"></h2>
   </div>
   <div id="root"></div>
   <script>
@@ -139,6 +141,12 @@
               previousStop = stopNames[i];
             }
             document.querySelector("#nextStop").innerHTML = stopNames[currentIndex];
+            if (currentIndex + 1 === stops.length) {
+              document.querySelector("#nextStop").innerHTML = stopNames[currentIndex];
+            } else {
+              document.querySelector("#thenStop").innerHTML = stopNames[currentIndex + 1];
+            }
+            document.querySelector("#nextStop").innerHTML = stopNames[currentIndex];
             if (!nextStopBubble) {
               nextStopBubble = L.popup({ closeButton: false, autoPan: false, closeOnClick: false })
                 .setLatLng([stops[currentIndex]._latlng.lat, stops[currentIndex]._latlng.lng]);
@@ -241,7 +249,7 @@
 
     getData(renderMap, bus1URL);
     var route = [
-      [60.202879456525324,24.908194541931156],
+      [60.202879456525324, 24.908194541931156],
       [60.20294343427406, 24.907969236373905],
       [60.2029327713246, 24.907497167587284],
       [60.202874125040644, 24.90731477737427],
@@ -252,35 +260,23 @@
       [60.202682191014766, 24.905780553817753],
       [60.20264487037934, 24.905501604080204],
       [60.20261821275663, 24.905265569686893],
-      [60.20261821275663, 24.90512609481812],
       [60.20261821275663, 24.90489006042481],
       [60.20261821275663, 24.904729127883915],
       [60.20261821275663, 24.904536008834842],
       [60.20262887580833, 24.904471635818485],
-      [60.20262887580833, 24.904471635818485],
-      [60.20262887580833, 24.904471635818485],
-      [60.202634207332856, 24.90430533885956],
       [60.202631541570696, 24.904198050498966],
-      [60.20261554699317, 24.904047846794132],
       [60.20259155511227, 24.90387082099915],
-      [60.20259422087769, 24.9037903547287],
       [60.20259422087769, 24.90355968475342],
       [60.20259422087769, 24.903371930122375],
       [60.20259422087769, 24.903189539909363],
       [60.20258355781472, 24.902991056442264],
-      [60.20258355781472, 24.902830123901367],
       [60.20258355781472, 24.902674555778503],
-      [60.20258355781472, 24.902572631835938],
-      [60.20258355781472, 24.902443885803226],
       [60.20258355781472, 24.90234732627869],
       [60.20256756321381, 24.902148842811584],
       [60.20256223167845, 24.90204691886902],
       [60.202551568605095, 24.901987910270694],
-      [60.20254890283621, 24.901944994926456],
-      [60.20253823975854, 24.901885986328125],
       [60.20252491090656, 24.90183234214783],
       [60.20252224513552, 24.901773333549503],
-      [60.2025275766774, 24.901708960533142],
       [60.20255423437374, 24.901671409606937],
       [60.20260221817262, 24.90153729915619],
       [60.202634207332856, 24.901424646377567],
